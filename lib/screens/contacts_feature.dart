@@ -17,7 +17,7 @@ class _ContactsFeatureState extends State<ContactsFeature> {
       appBar: AppBar(title: Text('Transfer to')),
       body: FutureBuilder<List<Contact>>(
         // initial data define como valor inicial uma lista vazia
-        initialData: List(),
+        initialData: [],
         // primeiro ele busca o future
         future: findAll(),
         // o builder executa após o future retornar
@@ -30,7 +30,7 @@ class _ContactsFeatureState extends State<ContactsFeature> {
               return Loading();
               break;
             case ConnectionState.active:
-            // stream
+              // stream
               break;
             case ConnectionState.done:
               final List<Contact> contacts = snapshot.data;
@@ -44,9 +44,11 @@ class _ContactsFeatureState extends State<ContactsFeature> {
                     return _ContactItem(
                       contact: contact,
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => TransactionForm(contact),
-                        ));
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => TransactionForm(contact),
+                          ),
+                        );
                       },
                     );
                   },
@@ -63,10 +65,10 @@ class _ContactsFeatureState extends State<ContactsFeature> {
         onPressed: () {
           Navigator.of(context)
               .push(
-            MaterialPageRoute(
-              builder: (context) => ContactForm(),
-            ),
-          )
+                MaterialPageRoute(
+                  builder: (context) => ContactForm(),
+                ),
+              )
               .then((value) => setState(() {}));
         },
         child: Icon(Icons.add),

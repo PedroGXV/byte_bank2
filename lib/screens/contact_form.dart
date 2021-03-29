@@ -23,7 +23,7 @@ class _ContactFormState extends State<ContactForm> {
           child: Column(
             children: [
               TextFormField(
-                controller: _nameController,
+                  controller: _nameController,
                   decoration: InputDecoration(
                     labelText: 'Full Name',
                   ),
@@ -42,13 +42,17 @@ class _ContactFormState extends State<ContactForm> {
               SizedBox(
                 height: 20,
               ),
-              FormButton(title: 'Create', onPressed: () {
-                final String name = _nameController.text;
-                final int accountNumber = int.tryParse(_accountController.text);
+              FormButton(
+                title: 'Create',
+                onPressed: () {
+                  final String name = _nameController.text;
+                  final int accountNumber =
+                      int.tryParse(_accountController.text);
 
-                final Contact newContact = Contact(0, name, accountNumber);
-                save(newContact).then((id) => Navigator.pop(context));
-              })
+                  final Contact newContact = Contact(0, name, accountNumber);
+                  save(newContact).then((id) => Navigator.pop(context));
+                },
+              )
             ],
           ),
         ),
